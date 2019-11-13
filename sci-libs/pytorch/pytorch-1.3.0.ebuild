@@ -26,7 +26,7 @@ EGIT_SUBMODULES=(
 )
 
 LICENSE="BSD"
-SLOT="0/1.3.0"
+SLOT="0/${PV}"
 KEYWORDS="~amd64 ~x86"
 IUSE="asan cuda doc +fbgemm ffmpeg gflags glog +gloo leveldb lmdb mkl +mkldnn mpi namedtensor +nnpack numa +numpy +observers opencl opencv +openmp +python +qnnpack redis rocm static tbb test tools zeromq"
 
@@ -63,6 +63,7 @@ PATCHES=(
 	"${FILESDIR}/0002-Don-t-build-libtorch-again-for-PyTorch.patch"
 	"${FILESDIR}/0003-Change-path-to-caffe2-build-dir-made-by-libtorch.patch"
 	"${FILESDIR}/0004-Don-t-fill-rpath-of-Caffe2-library-for-system-wide-i.patch"
+	"${FILESDIR}/0005-Change-library-directory-according-to-CMake-build.patch"
 )
 
 src_configure() {
