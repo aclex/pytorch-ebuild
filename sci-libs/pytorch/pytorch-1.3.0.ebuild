@@ -64,6 +64,7 @@ PATCHES=(
 	"${FILESDIR}/0003-Change-path-to-caffe2-build-dir-made-by-libtorch.patch"
 	"${FILESDIR}/0004-Don-t-fill-rpath-of-Caffe2-library-for-system-wide-i.patch"
 	"${FILESDIR}/0005-Change-library-directory-according-to-CMake-build.patch"
+	"${FILESDIR}/0006-Change-torch_path-part-for-cpp-extensions.patch"
 )
 
 src_configure() {
