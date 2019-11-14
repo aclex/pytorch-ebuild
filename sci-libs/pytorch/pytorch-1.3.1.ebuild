@@ -159,7 +159,16 @@ src_install() {
 	rm -rfv "${D}/usr/share/doc/mkldnn"
 
 	if use python; then
-		scanelf -r --fix ${BUILD_DIR}/caffe2/python;
+		install_shm_manager() {
+			TORCH_BIN_DIR="${D}/usr/lib64/${EPYTHON}/site-packages/torch/bin"
+
+			mkdir -pv ${TORCH_BIN_DIR}
+			cp -v "${D}/usr/bin/torch_shm_manager" "${TORCH_BIN_DIR}"
+		}
+
+		python_foreach_impl install_shm_manager
+
+		scanelf -r --fix ${BUILD_DIR}/caffe2/python
 		CMAKE_BUILD_DIR=${BUILD_DIR} distutils-r1_src_install
 		python_foreach_impl python_optimize
 	fi
