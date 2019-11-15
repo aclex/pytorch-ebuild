@@ -149,6 +149,8 @@ src_install() {
 	rm -rfv "${D}/usr/include/gloo"
 	rm -rfv "${D}/usr/include/include"
 
+	cp -rv "${WORKDIR}/${P}/third_party/pybind11/include/pybind11" "${D}/usr/include/"
+
 	rm -fv "${D}/usr/lib64/libtbb.so"
 	rm -rfv "${D}/usr/lib64/cmake"
 
