@@ -132,7 +132,8 @@ src_install() {
 		libsleef.a
 		libcaffe2_detectron_ops.so
 		libtorch_python.so
-)
+	)
+
 	for file in ${multilib_failing_files[@]}; do
 		mv -f "${D}/usr/lib/$file" "${D}/usr/lib64"
 	done
