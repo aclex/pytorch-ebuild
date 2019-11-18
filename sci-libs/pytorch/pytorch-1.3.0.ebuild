@@ -21,7 +21,6 @@ EGIT_SUBMODULES=(
 	'-third_party/ios-cmake'
 	'-third_party/gflags'
 	'-third_party/glog'
-	'-third_party/googletest'
 )
 
 LICENSE="BSD"
@@ -70,6 +69,7 @@ PATCHES=(
 	"${FILESDIR}/0004-Don-t-fill-rpath-of-Caffe2-library-for-system-wide-i.patch"
 	"${FILESDIR}/0005-Change-library-directory-according-to-CMake-build.patch"
 	"${FILESDIR}/0006-Change-torch_path-part-for-cpp-extensions.patch"
+	"${FILESDIR}/0007-Add-necessary-include-directory-for-ATen-CPU-tests.patch"
 )
 
 src_configure() {
@@ -186,8 +186,23 @@ src_install() {
 
 		python_foreach_impl install_shm_manager
 
+		remove_tests() {
+			find ${D} -name "*test*" -exec rm -rfv {} \;
+		}
+
 		scanelf -r --fix ${BUILD_DIR}/caffe2/python
 		CMAKE_BUILD_DIR=${BUILD_DIR} distutils-r1_src_install
+
+		if use test; then
+			python_foreach_impl remove_tests
+		fi
+
 		python_foreach_impl python_optimize
+	fi
+
+	if use test; then
+		rm -rfv "${D}/usr/test"
+		rm -fv "${D}/usr/bin/test_api"
+		rm -fv "${D}/usr/bin/test_jit"
 	fi
 }
