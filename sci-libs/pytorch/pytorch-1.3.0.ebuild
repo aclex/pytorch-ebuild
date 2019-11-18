@@ -22,7 +22,6 @@ EGIT_SUBMODULES=(
 	'-third_party/gflags'
 	'-third_party/glog'
 	'-third_party/googletest'
-#	'-third_party/tbb'
 )
 
 LICENSE="BSD"
@@ -158,7 +157,7 @@ src_install() {
 	rm -rfv "${D}/var"
 	rm -rfv "${D}/usr/lib"
 
-	rm -fv ${D}/usr/include/*.{h,hpp}
+	rm -fv "${D}/usr/include/*.{h,hpp}"
 	rm -rfv "${D}/usr/include/asmjit"
 	rm -rfv "${D}/usr/include/c10d"
 	rm -rfv "${D}/usr/include/fbgemm"
@@ -172,7 +171,7 @@ src_install() {
 	rm -rfv "${D}/usr/lib64/cmake"
 
 	if ! use static; then
-		rm -fv ${D}/usr/lib64/*.a
+		rm -fv "${D}/usr/lib64/*.a"
 	fi
 
 	rm -rfv "${D}/usr/share/doc/mkldnn"
