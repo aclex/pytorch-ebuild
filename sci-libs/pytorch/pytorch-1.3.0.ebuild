@@ -28,14 +28,19 @@ EGIT_SUBMODULES=(
 LICENSE="BSD"
 SLOT="0/${PV}"
 KEYWORDS="~amd64 ~x86"
-IUSE="asan cuda doc +fbgemm ffmpeg gflags glog +gloo leveldb lmdb mkl +mkldnn mpi namedtensor +nnpack numa +numpy +observers opencl opencv +openmp +python +qnnpack redis rocm static tbb test tools zeromq"
+IUSE="asan atlas cuda doc eigen +fbgemm ffmpeg gflags glog +gloo leveldb lmdb mkl +mkldnn mpi namedtensor +nnpack numa +numpy +observers openblas opencl opencv +openmp +python +qnnpack redis rocm static tbb test tools zeromq"
 
 REQUIRED_USE="
 	python? ( ${PYTHON_REQUIRED_USE} )
 	numpy? ( python )
+	atlas? ( !eigen !mkl !openblas )
+	eigen? ( !atlas !mkl !openblas )
+	mkl? ( !atlas !eigen !openblas )
+	openblas? ( !atlas !eigen !mkl )
 "
 
 DEPEND="
+	atlas? ( sci-libs/atlas )
 	cuda? ( dev-util/nvidia-cuda-toolkit:0= )
 	doc? ( dev-python/pytorch-sphinx-theme )
 	ffmpeg? ( virtual/ffmpeg )
@@ -46,6 +51,7 @@ DEPEND="
 	mkl? ( sci-libs/mkl )
 	mpi? ( virtual/mpi )
 	numpy? ( dev-python/numpy )
+	openblas? ( sci-libs/openblas )
 	opencl? ( virtual/opencl )
 	opencv? ( media-libs/opencv )
 	python? ( ${PYTHON_DEPS} )
@@ -68,6 +74,16 @@ PATCHES=(
 )
 
 src_configure() {
+	local blas="Eigen"
+
+	if use atlas; then
+		blas="ATLAS"
+	elif use mkl; then
+		blas="MKL"
+	elif use openblas; then
+		blas="OpenBLAS"
+	fi
+
 	local mycmakeargs=(
 		-DTORCH_BUILD_VERSION=${PV}
 		-DTORCH_INSTALL_LIB_DIR=lib64
@@ -107,7 +123,7 @@ src_configure() {
 		-DUSE_MPI=$(usex mpi ON OFF)
 		-DUSE_GLOO=$(usex gloo ON OFF)
 		-DBUILD_NAMEDTENSOR=$(usex namedtensor ON OFF)
-		-DBLAS=OpenBLAS
+		-DBLAS=${blas}
 		-DBUILDING_SYSTEM_WIDE=ON # to remove insecure DT_RUNPATH header
 	)
 
