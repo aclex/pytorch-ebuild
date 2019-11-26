@@ -26,7 +26,7 @@ EGIT_SUBMODULES=(
 LICENSE="BSD"
 SLOT="0/${PV}"
 KEYWORDS="~amd64 ~x86"
-IUSE="asan atlas cuda doc eigen +fbgemm ffmpeg gflags glog +gloo leveldb lmdb mkl +mkldnn mpi namedtensor +nnpack numa +numpy +observers openblas opencl opencv +openmp +python +qnnpack redis rocm static tbb test tools zeromq"
+IUSE="asan atlas cuda doc eigen +fbgemm ffmpeg gflags glog +gloo leveldb lmdb mkl +mkldnn mpi namedtensor +nnpack numa +numpy +observers openblas opencl opencv +openmp +python +qnnpack redis static tbb test tools zeromq"
 
 REQUIRED_USE="
 	python? ( ${PYTHON_REQUIRED_USE} )
@@ -54,7 +54,6 @@ DEPEND="
 	opencv? ( media-libs/opencv )
 	python? ( ${PYTHON_DEPS} )
 	redis? ( dev-db/redis )
-	rocm? ( dev-libs/rocm-opencl-driver )
 	zeromq? ( net-libs/zeromq )
 "
 RDEPEND="${DEPEND}"
@@ -94,7 +93,7 @@ src_configure() {
 		-DBUILD_TEST=$(usex test ON OFF)
 		-DUSE_ASAN=$(usex asan ON OFF)
 		-DUSE_CUDA=$(usex cuda ON OFF)
-		-DUSE_ROCM=$(usex rocm ON OFF)
+		-DUSE_ROCM=OFF
 		-DUSE_FBGEMM=$(usex fbgemm ON OFF)
 		-DUSE_FFMPEG=$(usex ffmpeg ON OFF)
 		-DUSE_GFLAGS=$(usex gflags ON OFF)
