@@ -20,13 +20,13 @@ RDEPEND="
 	dev-python/beautifulsoup
 	dev-python/future
 	dev-python/docutils
-	dev-python/namespace-sphinxcontrib[${PYTHON_USEDEP}]"
+	dev-python/namespace-sphinxcontrib"
 
 # avoid circular dependency with sphinx
 PDEPEND="
-	>=dev-python/sphinx-1.5.3[${PYTHON_USEDEP}]"
+	>=dev-python/sphinx-1.5.3"
 
 DEPEND="
 	${RDEPEND}
 	${PDEPEND}
-	dev-python/setuptools[${PYTHON_USEDEP}]"
+	dev-python/setuptools"

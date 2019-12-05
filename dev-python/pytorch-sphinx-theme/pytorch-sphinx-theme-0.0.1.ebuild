@@ -17,8 +17,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 IUSE=""
 
-RDEPEND="dev-python/sphinx[${PYTHON_USEDEP}]"
-DEPEND="${RDEPEND} dev-python/setuptools[${PYTHON_USEDEP}]"
+RDEPEND="dev-python/sphinx"
+DEPEND="${RDEPEND} dev-python/setuptools"
 
 src_unpack() {
 	unpack ${A}
