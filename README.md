@@ -15,5 +15,5 @@ What's inside
 * [x] system-wide installation
 * [x] actual Python binding (the [PyTorch](https://github.com/pytorch/pytorch) itself) linked to the built `libtorch` instance (i.e. no additional rebuild)
 * [x] BLAS selection (currently [OpenBLAS](https://www.openblas.net/) only)
-* [ ] building official documentation
+* [x] building official documentation
 * [x] [torchvision](https://github.com/pytorch/vision)
