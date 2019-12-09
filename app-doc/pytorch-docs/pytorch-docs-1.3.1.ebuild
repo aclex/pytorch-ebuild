@@ -27,6 +27,7 @@ DEPEND="
 	sci-libs/torchvision
 	dev-python/sphinxcontrib-katex
 	dev-python/javasphinx
+	dev-python/pytorch-sphinx-theme
 "
 
 src_unpack() {
