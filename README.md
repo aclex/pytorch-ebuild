@@ -6,7 +6,19 @@ The project contains a portage directory subtree, which can be used for building
 How to use
 ---------
 
-For example, you can create custom local repository, as described [here](https://wiki.gentoo.org/wiki/Custom_repository) and just move the whole directory content of the project (except for LICENSE and README.md stuff) there. Then you just merge the packages using the common utilities (`emerge`).
+Probably the easiest way is to add this repository to your system as overlay, as described in details [here](https://wiki.gentoo.org/wiki/Custom_repository). In short, to do this you want to create a small file in your `/etc/portage/repos.conf` directory (as `root`):
+
+```bash
+cat >> /etc/portage/repos.conf/aclex-pytorch.conf << EOF
+[aclex-pytorch]
+location = /var/db/repos/aclex-pytorch
+sync-type = git
+sync-uri = https://github.com/aclex/pytorch-ebuild
+auto-sync = yes
+EOF
+```
+
+Of course, feel free to replace `aclex-pytorch` everywhere to anything sounding better to you. Then you just sync the changes (`emerge --sync`, `eix-sync` etc.) and merge the packages using the common utilities via e.g. `emerge`.
 
 What's inside
 --------
