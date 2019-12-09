@@ -30,6 +30,10 @@ DEPEND="
 	dev-python/pytorch-sphinx-theme
 "
 
+PATCHES=(
+	"${FILESDIR}/0001-Don-t-prerender-TeX-parts.patch"
+)
+
 src_unpack() {
 	unpack ${A}
 	mv ${WORKDIR}/${PYTORCH_NAME}-${PV} ${S}
@@ -37,10 +41,8 @@ src_unpack() {
 
 src_compile() {
 	local doc_build_dir="${S}/docs"
-
 	cd "${doc_build_dir}"
-	npm install katex
-	PATH="${doc_build_dir}/node_modules/.bin:$PATH" make html-stable
+	emake -j1 html-stable
 }
 
 src_install() {
