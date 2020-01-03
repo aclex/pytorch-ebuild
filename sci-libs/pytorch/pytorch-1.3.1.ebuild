@@ -50,7 +50,7 @@ DEPEND="
 	mpi? ( virtual/mpi )
 	numpy? ( dev-python/numpy )
 	openblas? ( sci-libs/openblas )
-	opencl? ( virtual/opencl )
+	opencl? ( dev-libs/clhpp virtual/opencl )
 	opencv? ( media-libs/opencv )
 	python? ( ${PYTHON_DEPS} )
 	redis? ( dev-db/redis )
