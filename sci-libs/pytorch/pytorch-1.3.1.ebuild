@@ -9,7 +9,7 @@ DISTUTILS_OPTIONAL=1
 
 inherit distutils-r1 cmake-utils git-r3 python-r1
 
-DESCRIPTION="An open source machine learning framework that accelerates the path from research prototyping to production deployment."
+DESCRIPTION="An open source machine learning framework"
 HOMEPAGE="https://pytorch.org/"
 SRC_URI="https://github.com/${PN}/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 

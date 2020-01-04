@@ -7,7 +7,7 @@ PYTHON_COMPAT=( python2_7 python3_{5,6,7} )
 
 inherit distutils-r1
 
-DESCRIPTION="Sphinx theme for PyTorch Docs and PyTorch Tutorials based on the Read the Docs Sphinx Theme"
+DESCRIPTION="Sphinx theme for PyTorch Docs and PyTorch Tutorials"
 HOMEPAGE="https://github.com/pytorch/pytorch_sphinx_theme"
 COMMIT="77e5f4c6a11538b996aac8aa989ee8ad45d66919"
 SRC_URI="https://github.com/pytorch/pytorch_sphinx_theme/archive/${COMMIT}.tar.gz -> ${P}.tar.gz"
