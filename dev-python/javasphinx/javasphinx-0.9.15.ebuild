@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -17,7 +17,7 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sparc ~
 RDEPEND="
 	>=dev-python/javalang-0.10.1
 	dev-python/lxml
-	dev-python/beautifulsoup
+	dev-python/beautifulsoup:4
 	dev-python/future
 	dev-python/docutils
 	dev-python/namespace-sphinxcontrib"
