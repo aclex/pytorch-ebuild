@@ -1,4 +1,4 @@
-# Copyright 2019 Gentoo Authors
+# Copyright 2019-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -186,10 +186,10 @@ src_install() {
 		python_foreach_impl install_shm_manager
 
 		remove_tests() {
-			find ${D} -name "*test*" -exec rm -rfv {} \;
+			find "${D}" -name "*test*" -exec rm -rfv {} \;
 		}
 
-		scanelf -r --fix ${BUILD_DIR}/caffe2/python
+		scanelf -r --fix "${BUILD_DIR}/caffe2/python"
 		CMAKE_BUILD_DIR=${BUILD_DIR} distutils-r1_src_install
 
 		if use test; then
