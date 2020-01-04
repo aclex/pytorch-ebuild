@@ -32,6 +32,7 @@ DEPEND="
 
 PATCHES=(
 	"${FILESDIR}/0001-Don-t-prerender-TeX-parts.patch"
+	"${FILESDIR}/0002-Use-MAKE-environment-variable-instead-of-make.patch"
 )
 
 src_unpack() {
@@ -42,7 +43,7 @@ src_unpack() {
 src_compile() {
 	local doc_build_dir="${S}/docs"
 	cd "${doc_build_dir}"
-	emake -j1 html-stable
+	emake html-stable
 }
 
 src_install() {
