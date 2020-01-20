@@ -77,8 +77,8 @@ PATCHES=(
 	"${FILESDIR}/0005-Change-library-directory-according-to-CMake-build.patch"
 	"${FILESDIR}/0006-Change-torch_path-part-for-cpp-extensions.patch"
 	"${FILESDIR}/0007-Add-necessary-include-directory-for-ATen-CPU-tests.patch"
-	"${FILESDIR}/0008-Adaptation-CMake-ROCm-related-functions-to-Gentoo.patch"
-	"${FILESDIR}/0009-Fix-include-directory-variable-of-rocThrust.patch"
+	"${FILESDIR}/0008-Fix-include-directory-variable-of-rocThrust.patch"
+	"${FILESDIR}/0009-Prefer-lib64-for-some-ROCm-packages.patch"
 )
 
 src_prepare() {

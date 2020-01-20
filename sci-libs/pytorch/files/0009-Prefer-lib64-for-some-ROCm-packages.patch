@@ -1,0 +1,37 @@
+From 92e7cdb5ba5565af04b26276da3ee64bdba6f6fb Mon Sep 17 00:00:00 2001
+From: Alexey Chernov <4ernov@gmail.com>
+Date: Fri, 10 Jan 2020 01:11:22 +0300
+Subject: [PATCH 2/3] Prefer `lib64` for some ROCm packages
+
+---
+ cmake/public/LoadHIP.cmake | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/cmake/public/LoadHIP.cmake b/cmake/public/LoadHIP.cmake
+index 414b2be3af..2b3ad48e1b 100644
+--- a/cmake/public/LoadHIP.cmake
++++ b/cmake/public/LoadHIP.cmake
+@@ -139,15 +139,16 @@ IF(HIP_FOUND)
+   set(CMAKE_HCC_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
+   ### Remove setting of Flags when FindHIP.CMake PR #558 is accepted.###
+ 
+-  set(rocrand_DIR ${ROCRAND_PATH}/lib/cmake/rocrand)
+-  set(hiprand_DIR ${HIPRAND_PATH}/lib/cmake/hiprand)
+-  set(rocblas_DIR ${ROCBLAS_PATH}/lib/cmake/rocblas)
++  set(rocrand_DIR ${ROCRAND_PATH}/lib64/cmake/rocrand)
++  set(hiprand_DIR ${HIPRAND_PATH}/lib64/cmake/hiprand)
++  set(rocblas_DIR ${ROCBLAS_PATH}/lib64/cmake/rocblas)
+   set(miopen_DIR ${MIOPEN_PATH}/lib/cmake/miopen)
+   set(rocfft_DIR ${ROCFFT_PATH}/lib/cmake/rocfft)
+   set(hipsparse_DIR ${HIPSPARSE_PATH}/lib/cmake/hipsparse)
+   set(rocprim_DIR ${ROCPRIM_PATH}/lib/cmake/rocprim)
+   set(hipcub_DIR ${HIPCUB_PATH}/lib/cmake/hipcub)
+-  set(rocthrust_DIR ${ROCTHRUST_PATH}/lib/cmake/rocthrust)
++  set(rocthrust_DIR ${ROCTHRUST_PATH}/lib64/cmake/rocthrust)
++  set(hcc_DIR ${HCC_PATH}/lib/cmake/hcc)
+ 
+   find_package_and_print_version(rocrand REQUIRED) 
+   find_package_and_print_version(hiprand REQUIRED)
+-- 
+2.24.1
+

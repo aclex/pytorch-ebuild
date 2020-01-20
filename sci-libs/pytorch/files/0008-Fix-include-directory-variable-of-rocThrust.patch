@@ -1,17 +1,17 @@
-From f4cb02d0ddb91de03dbdbcae694d488412c1f296 Mon Sep 17 00:00:00 2001
+From 8501bb5b8da27bb469a128dbd2e56fd16d213396 Mon Sep 17 00:00:00 2001
 From: Alexey Chernov <4ernov@gmail.com>
-Date: Wed, 8 Jan 2020 04:59:04 +0300
-Subject: [PATCH 9/9] Fix include directory variable of rocThrust
+Date: Wed, 8 Jan 2020 04:56:49 +0300
+Subject: [PATCH] Fix include directory variable of rocThrust
 
 ---
  cmake/Dependencies.cmake | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/cmake/Dependencies.cmake b/cmake/Dependencies.cmake
-index 6ef9d7b0e2..63ac536db5 100644
+index a8e9769536..7634a6936a 100644
 --- a/cmake/Dependencies.cmake
 +++ b/cmake/Dependencies.cmake
-@@ -981,7 +981,7 @@ if(USE_ROCM)
+@@ -978,7 +978,7 @@ if(USE_ROCM)
      endforeach()
  
      set(Caffe2_HIP_INCLUDE
