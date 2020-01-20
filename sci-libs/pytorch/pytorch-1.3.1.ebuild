@@ -79,6 +79,7 @@ PATCHES=(
 	"${FILESDIR}/0007-Add-necessary-include-directory-for-ATen-CPU-tests.patch"
 	"${FILESDIR}/0008-Fix-include-directory-variable-of-rocThrust.patch"
 	"${FILESDIR}/0009-Prefer-lib64-for-some-ROCm-packages.patch"
+	"${FILESDIR}/0010-Remove-conversion-ambiguity-in-ternary-operators.patch"
 )
 
 src_prepare() {

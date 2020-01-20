@@ -1,7 +1,7 @@
 From 0f3a0d9a948fdd8481a5f7751a255ecd9ed4d37a Mon Sep 17 00:00:00 2001
 From: Alexey Chernov <4ernov@gmail.com>
 Date: Mon, 20 Jan 2020 01:21:22 +0300
-Subject: [PATCH 3/3] Remove conversion ambiguity in ternal operators
+Subject: [PATCH 3/3] Remove conversion ambiguity in ternary operators
 
 It fails to compile with recent versions of Clang
 (namely, version 10 used behind HCC compiler when
