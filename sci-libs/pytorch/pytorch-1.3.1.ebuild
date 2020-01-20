@@ -66,7 +66,6 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 BDEPEND="
-	rocm? ( sys-apps/grep dev-util/rocminfo )
 	doc? ( app-doc/doxygen )
 "
 
@@ -101,13 +100,8 @@ src_configure() {
 		blas="OpenBLAS"
 	fi
 
-	detect_arch () {
-		return $(rocminfo) | grep -m 1 -oe "gfx[[:digit:]]\{3\}"
-	}
-
 	# local ROCM_PATH="/usr/lib"
-	local PYTORCH_ROCM_ARCH="$(detect_arch)"
-	local HCC_AMDGPU_TARGET="$(detect_arch)"
+	# local PYTORCH_ROCM_ARCH="$(detect_arch)"
 	local ROCBLAS_PATH="/usr"
 	local ROCTHRUST_PATH="/usr"
 	local HCC_PATH="${HCC_HOME}"
