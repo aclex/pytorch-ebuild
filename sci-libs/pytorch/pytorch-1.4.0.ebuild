@@ -38,6 +38,7 @@ REQUIRED_USE="
 "
 
 DEPEND="
+	sys-devel/clang
 	atlas? ( sci-libs/atlas )
 	cuda? ( dev-util/nvidia-cuda-toolkit:0= )
 	doc? ( dev-python/pytorch-sphinx-theme )
@@ -124,6 +125,9 @@ src_configure() {
 		-DBLAS=${blas}
 		-DBUILDING_SYSTEM_WIDE=ON # to remove insecure DT_RUNPATH header
 	)
+
+	local CC="clang"
+	local CXX="clang++"
 
 	cmake-utils_src_configure
 
