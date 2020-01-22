@@ -18,7 +18,7 @@ auto-sync = yes
 EOF
 ```
 
-Of course, feel free to replace `aclex-pytorch` everywhere to anything sounding better to you. Then you just sync the changes (`emerge --sync`, `eix-sync` etc.) and merge the packages using the common utilities via e.g. `emerge`.
+Then you just sync the changes (`emerge --sync`, `eix-sync` etc.) and merge the packages using the common utilities via e.g. `emerge`.
 
 What's inside
 --------
