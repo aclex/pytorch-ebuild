@@ -43,3 +43,14 @@ What's inside
 * [x] BLAS selection
 * [x] building official documentation
 * [x] [torchvision](https://github.com/pytorch/vision) (CPU and CUDA support only at the moment)
+
+Some questions on [ROCm](https://rocm.github.io/) support
+--------
+**How can I make use ROCm inside PyTorch?**
+It mimics CUDA inside PyTorch (and libtorch), so you can use just the same code snippets you normally use to work with CUDA, e.g. `.cuda()`, `torch.cuda.is_available() == True` etc.
+
+**Can I still build CUDA support along with ROCm support enabled?**
+This configuration is deeply untested, but is apparently possible. ROCm sources are additionally generated and don't seem to collide with CPU or CUDA source files.
+
+**Is it experimental or official support?**
+As the [corresponding chapter](https://rocm.github.io/pytorch.html) on the homepage reads, PyTorch ROCm support appears to be official.
