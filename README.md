@@ -3,6 +3,8 @@ Ebuild files and necessary patches for [PyTorch](https://github.com/pytorch/pyto
 
 The project contains a portage directory subtree, which can be used for building and merging [PyTorch](https://github.com/pytorch/pytorch) in Gentoo-based distros.
 
+**If you have recent AMD GPU and would like to build [PyTorch](https://github.com/pytorch/pytorch) with [AMD ROCm](https://rocm.github.io/) support, please, consider checking out [`rocm`](https://github.com/aclex/pytorch-ebuild/tree/rocm) branch. The current `master` branch provides building with CPU and CUDA support only.**
+
 How to use
 ---------
 
