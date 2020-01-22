@@ -25,7 +25,7 @@ What's inside
 
 * [x] `libtorch` (C++ core of [PyTorch](https://github.com/pytorch/pytorch))
 * [x] system-wide installation
-* [x] actual Python binding (the [PyTorch](https://github.com/pytorch/pytorch) itself) linked to the built `libtorch` instance (i.e. no additional rebuild)
+* [x] Python binding (i.e. [PyTorch](https://github.com/pytorch/pytorch) itself) linked to the built `libtorch` instance (i.e. no additional rebuild)
 * [x] BLAS selection
 * [x] building official documentation
 * [x] [torchvision](https://github.com/pytorch/vision)
