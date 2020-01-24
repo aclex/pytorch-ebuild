@@ -26,7 +26,7 @@ EGIT_SUBMODULES=(
 LICENSE="BSD"
 SLOT="0/${PV}"
 KEYWORDS="~amd64 ~x86"
-IUSE="asan atlas cuda doc eigen +fbgemm ffmpeg gflags glog +gloo leveldb lmdb mkl +mkldnn mpi namedtensor +nnpack numa +numpy +observers openblas opencl opencv +openmp +python +qnnpack redis static tbb test tools zeromq"
+IUSE="asan atlas cuda doc eigen +fbgemm ffmpeg gflags glog +gloo leveldb lmdb mkl +mkldnn mpi namedtensor +nnpack numa +numpy +observers openblas opencl opencv +openmp +python +qnnpack redis rocm static tbb test tools zeromq"
 
 REQUIRED_USE="
 	python? ( ${PYTHON_REQUIRED_USE} )
@@ -35,6 +35,7 @@ REQUIRED_USE="
 	eigen? ( !atlas !mkl !openblas )
 	mkl? ( !atlas !eigen !openblas )
 	openblas? ( !atlas !eigen !mkl )
+	rocm? ( !mkldnn !cuda )
 "
 
 DEPEND="
@@ -55,6 +56,13 @@ DEPEND="
 	opencv? ( media-libs/opencv )
 	python? ( ${PYTHON_DEPS} )
 	redis? ( dev-db/redis )
+	rocm? (
+		dev-util/amd-rocm-meta
+		dev-util/rocm-cmake
+		dev-libs/rccl
+		sci-libs/miopen
+		dev-libs/roct-thunk-interface
+	)
 	zeromq? ( net-libs/zeromq )
 "
 RDEPEND="${DEPEND}"
@@ -70,8 +78,19 @@ PATCHES=(
 	"${FILESDIR}/0005-Change-library-directory-according-to-CMake-build.patch"
 	"${FILESDIR}/0006-Change-torch_path-part-for-cpp-extensions.patch"
 	"${FILESDIR}/0007-Add-necessary-include-directory-for-ATen-CPU-tests.patch"
+	"${FILESDIR}/0008-Fix-include-directory-variable-of-rocThrust-1.4.0.patch"
+	"${FILESDIR}/0009-Prefer-lib64-for-some-ROCm-packages-1.4.0.patch"
+	"${FILESDIR}/0010-Remove-conversion-ambiguity-in-ternary-operators.patch"
 	"${FILESDIR}/Prevent-finding-pybind11-system-wide-installation.patch"
 )
+
+src_prepare() {
+	cmake-utils_src_prepare
+
+	if use rocm; then
+		python "${S}/tools/amd_build/build_amd.py"
+	fi
+}
 
 src_configure() {
 	local blas="Eigen"
@@ -82,6 +101,12 @@ src_configure() {
 		blas="MKL"
 	elif use openblas; then
 		blas="OpenBLAS"
+	fi
+
+	if use rocm; then
+		local ROCBLAS_PATH="/usr"
+		local ROCTHRUST_PATH="/usr"
+		local HCC_PATH="${HCC_HOME}"
 	fi
 
 	local mycmakeargs=(
@@ -95,7 +120,7 @@ src_configure() {
 		-DBUILD_TEST=$(usex test ON OFF)
 		-DUSE_ASAN=$(usex asan ON OFF)
 		-DUSE_CUDA=$(usex cuda ON OFF)
-		-DUSE_ROCM=OFF
+		-DUSE_ROCM=$(usex rocm ON OFF)
 		-DUSE_FBGEMM=$(usex fbgemm ON OFF)
 		-DUSE_FFMPEG=$(usex ffmpeg ON OFF)
 		-DUSE_GFLAGS=$(usex gflags ON OFF)
