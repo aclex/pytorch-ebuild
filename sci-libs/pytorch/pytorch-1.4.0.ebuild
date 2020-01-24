@@ -38,7 +38,7 @@ REQUIRED_USE="
 "
 
 DEPEND="
-	sys-devel/clang
+	sys-devel/clang:*
 	atlas? ( sci-libs/atlas )
 	cuda? ( dev-util/nvidia-cuda-toolkit:0= )
 	doc? ( dev-python/pytorch-sphinx-theme )
@@ -174,10 +174,6 @@ src_install() {
 	rm -fv "${D}/usr/lib64/libtbb.so"
 	rm -rfv "${D}/usr/lib64/cmake"
 
-	if ! use static; then
-		rm -fv "${D}/usr/lib64/*.a"
-	fi
-
 	rm -rfv "${D}/usr/share/doc/mkldnn"
 
 	if use python; then
@@ -203,6 +199,8 @@ src_install() {
 
 		python_foreach_impl python_optimize
 	fi
+
+	find "${D}/usr/lib64" -name "*.a" -exec rm -fv {} \;
 
 	if use test; then
 		rm -rfv "${D}/usr/test"
