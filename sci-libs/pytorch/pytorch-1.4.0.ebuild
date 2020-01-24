@@ -70,6 +70,7 @@ PATCHES=(
 	"${FILESDIR}/0005-Change-library-directory-according-to-CMake-build.patch"
 	"${FILESDIR}/0006-Change-torch_path-part-for-cpp-extensions.patch"
 	"${FILESDIR}/0007-Add-necessary-include-directory-for-ATen-CPU-tests.patch"
+	"${FILESDIR}/Prevent-finding-pybind11-system-wide-installation.patch"
 )
 
 src_configure() {
