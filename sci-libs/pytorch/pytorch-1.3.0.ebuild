@@ -201,6 +201,10 @@ src_install() {
 	rm -rfv "${D}/usr/include/gloo"
 	rm -rfv "${D}/usr/include/include"
 
+	if use rocm; then
+		rm -rfv "${D}/usr/include/hip"
+	fi
+
 	cp -rv "${WORKDIR}/${P}/third_party/pybind11/include/pybind11" "${D}/usr/include/"
 
 	rm -fv "${D}/usr/lib64/libtbb.so"

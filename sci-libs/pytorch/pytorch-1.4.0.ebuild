@@ -206,6 +206,11 @@ src_install() {
 	rm -rfv "${D}/usr/include/fp16"
 	rm -rfv "${D}/usr/include/gloo"
 	rm -rfv "${D}/usr/include/include"
+	rm -rfv "${D}/usr/include/var"
+
+	if use rocm; then
+		rm -rfv "${D}/usr/include/hip"
+	fi
 
 	cp -rv "${WORKDIR}/${P}/third_party/pybind11/include/pybind11" "${D}/usr/include/"
 
