@@ -85,6 +85,7 @@ PATCHES=(
 	"${FILESDIR}/0009-Prefer-lib64-for-some-ROCm-packages-1.4.0.patch"
 	"${FILESDIR}/0010-Remove-conversion-ambiguity-in-ternary-operators.patch"
 	"${FILESDIR}/0011-Prevent-finding-pybind11-system-wide-installation.patch"
+	"${FILESDIR}/0012-Special-path-for-roctracer.patch"
 )
 
 src_prepare() {
