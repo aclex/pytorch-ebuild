@@ -105,9 +105,18 @@ src_configure() {
 	fi
 
 	if use rocm; then
-		local ROCBLAS_PATH="/usr"
-		local ROCTHRUST_PATH="/usr"
-		local HCC_PATH="${HCC_HOME}"
+		export HCC_PATH="${HCC_HOME}"
+		export ROCBLAS_PATH="/usr"
+		export ROCFFT_PATH="/usr"
+		export HIPSPARSE_PATH="/usr"
+		export HIPRAND_PATH="/usr"
+		export ROCRAND_PATH="/usr"
+		export MIOPEN_PATH="/usr"
+		export RCCL_PATH="/usr"
+		export ROCPRIM_PATH="/usr"
+		export HIPCUB_PATH="/usr"
+		export ROCTHRUST_PATH="/usr"
+		export ROCTRACER_PATH="/usr"
 	fi
 
 	local mycmakeargs=(
