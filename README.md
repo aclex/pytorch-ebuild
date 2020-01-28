@@ -16,7 +16,7 @@ Probably the easiest way to register external portage repository in the system i
 
 ```bash
 cat >> /etc/portage/repos.conf/justxi-rocm.conf << EOF
-[justxi-rocm]
+[rocm]
 location = /var/db/repos/justxi-rocm
 sync-type = git
 sync-uri = https://github.com/justxi/rocm
