@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python2_7 python3_{5,6,7} )
+PYTHON_COMPAT=( python3_{6,7} )
 
 DISTUTILS_OPTIONAL=1
 
@@ -41,7 +41,6 @@ REQUIRED_USE="
 DEPEND="
 	dev-libs/protobuf
 	dev-python/pyyaml[${PYTHON_USEDEP}]
-	dev-python/typing[${PYTHON_USEDEP}]
 	atlas? ( sci-libs/atlas )
 	cuda? ( dev-util/nvidia-cuda-toolkit:0= )
 	doc? ( dev-python/pytorch-sphinx-theme[${PYTHON_USEDEP}] )

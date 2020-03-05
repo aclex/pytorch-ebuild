@@ -41,7 +41,6 @@ REQUIRED_USE="
 DEPEND="
 	dev-libs/protobuf
 	dev-python/pyyaml[${PYTHON_USEDEP}]
-	dev-python/typing[${PYTHON_USEDEP}]
 	sys-devel/clang:*
 	atlas? ( sci-libs/atlas )
 	cuda? ( dev-util/nvidia-cuda-toolkit:0= )
