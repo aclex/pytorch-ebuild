@@ -14,7 +14,7 @@ HOMEPAGE="https://pytorch.org/"
 SRC_URI="https://github.com/${PN}/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 EGIT_REPO_URI="https://github.com/${PN}/${PN}"
-EGIT_BRANCH="v${PV}"
+EGIT_COMMIT="v${PV}"
 EGIT_SUBMODULES=(
 	'*'
 	'-third_party/protobuf'
