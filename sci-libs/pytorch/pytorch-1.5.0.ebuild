@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6,7} )
+PYTHON_COMPAT=( python3_{6,7,8} )
 
 DISTUTILS_OPTIONAL=1
 
@@ -41,7 +41,7 @@ REQUIRED_USE="
 DEPEND="
 	dev-libs/protobuf
 	dev-python/pyyaml[${PYTHON_USEDEP}]
-	dev-python/typing[${PYTHON_USEDEP}]
+	dev-python/typing-extensions[${PYTHON_USEDEP}]
 	sys-devel/clang:*
 	atlas? ( sci-libs/atlas )
 	cuda? ( dev-util/nvidia-cuda-toolkit:0= )
