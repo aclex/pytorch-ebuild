@@ -170,6 +170,14 @@ src_configure() {
 	fi
 }
 
+src_compile() {
+	cmake-utils_src_compile
+
+	if use python; then
+		CMAKE_BUILD_DIR=${BUILD_DIR} distutils-r1_src_compile
+	fi
+}
+
 src_install() {
 	cmake-utils_src_install
 
