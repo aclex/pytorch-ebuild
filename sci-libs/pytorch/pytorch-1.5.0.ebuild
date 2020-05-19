@@ -7,7 +7,7 @@ PYTHON_COMPAT=( python3_{6,7,8} )
 
 DISTUTILS_OPTIONAL=1
 
-inherit distutils-r1 cmake-utils git-r3 python-r1
+inherit distutils-r1 cmake-utils git-r3 python-r1 python-utils-r1
 
 DESCRIPTION="An open source machine learning framework"
 HOMEPAGE="https://pytorch.org/"
@@ -224,10 +224,11 @@ src_install() {
 
 	if use python; then
 		install_shm_manager() {
-			TORCH_BIN_DIR="${D}/usr/lib64/${EPYTHON}/site-packages/torch/bin"
+			python_get_sitedir
+			TORCH_BIN_DIR="${D}/${PYTHON_SITEDIR}/torch/bin"
 
-			mkdir -pv ${TORCH_BIN_DIR}
-			cp -v "${D}/usr/bin/torch_shm_manager" "${TORCH_BIN_DIR}"
+			mkdir -pv ${TORCH_BIN_DIR} || die
+			cp -v "${D}/usr/bin/torch_shm_manager" "${TORCH_BIN_DIR}" || die
 		}
 
 		python_foreach_impl install_shm_manager
