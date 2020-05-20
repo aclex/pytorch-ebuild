@@ -21,6 +21,7 @@ EGIT_SUBMODULES=(
 	'-third_party/ios-cmake'
 	'-third_party/gflags'
 	'-third_party/glog'
+	'-third_party/pybind11'
 )
 
 LICENSE="BSD"
@@ -42,6 +43,7 @@ DEPEND="
 	dev-libs/protobuf
 	dev-python/pyyaml[${PYTHON_USEDEP}]
 	dev-python/typing-extensions[${PYTHON_USEDEP}]
+	dev-python/pybind11[${PYTHON_USEDEP}]
 	sys-devel/clang:*
 	atlas? ( sci-libs/atlas )
 	cuda? ( dev-util/nvidia-cuda-toolkit:0= )
@@ -83,9 +85,9 @@ PATCHES=(
 	"${FILESDIR}/0007-Add-necessary-include-directory-for-ATen-CPU-tests.patch"
 	"${FILESDIR}/0008-Fix-include-directory-variable-of-rocThrust-1.4.0.patch"
 	"${FILESDIR}/0009-Prefer-lib64-for-some-ROCm-packages-1.4.0.patch"
-	"${FILESDIR}/0011-Prevent-finding-pybind11-system-wide-installation.patch"
 	"${FILESDIR}/0012-Special-path-for-roctracer.patch"
 	"${FILESDIR}/Include-neon2sse-third-party-header-library.patch"
+	"${FILESDIR}/Use-system-wide-pybind11-properly.patch"
 )
 
 src_prepare() {
@@ -215,8 +217,6 @@ src_install() {
 	if use rocm; then
 		rm -rfv "${D}/usr/include/hip"
 	fi
-
-	cp -rv "${WORKDIR}/${P}/third_party/pybind11/include/pybind11" "${D}/usr/include/"
 
 	rm -fv "${D}/usr/lib64/libtbb.so"
 	rm -rfv "${D}/usr/lib64/cmake"
