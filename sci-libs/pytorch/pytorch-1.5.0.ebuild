@@ -89,6 +89,7 @@ PATCHES=(
 	"${FILESDIR}/Include-neon2sse-third-party-header-library.patch"
 	"${FILESDIR}/Use-system-wide-pybind11-properly.patch"
 	"${FILESDIR}/Include-mkl-Caffe2-targets-only-when-enabled.patch"
+	"${FILESDIR}/Use-platform-dependent-LIBDIR-in-TorchConfig.cmake.in.patch"
 )
 
 src_prepare() {
