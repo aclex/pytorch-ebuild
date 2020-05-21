@@ -88,6 +88,7 @@ PATCHES=(
 	"${FILESDIR}/0012-Special-path-for-roctracer.patch"
 	"${FILESDIR}/Include-neon2sse-third-party-header-library.patch"
 	"${FILESDIR}/Use-system-wide-pybind11-properly.patch"
+	"${FILESDIR}/Include-mkl-Caffe2-targets-only-when-enabled.patch"
 )
 
 src_prepare() {
