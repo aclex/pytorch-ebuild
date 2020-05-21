@@ -44,7 +44,7 @@ DEPEND="
 	dev-python/pyyaml[${PYTHON_USEDEP}]
 	dev-python/typing-extensions[${PYTHON_USEDEP}]
 	dev-python/pybind11[${PYTHON_USEDEP}]
-	sys-devel/clang:*
+	sys-devel/clang:*[${PYTHON_USEDEP}]
 	atlas? ( sci-libs/atlas )
 	cuda? ( dev-util/nvidia-cuda-toolkit:0= )
 	doc? ( dev-python/pytorch-sphinx-theme[${PYTHON_USEDEP}] )
@@ -58,7 +58,7 @@ DEPEND="
 	numpy? ( dev-python/numpy[${PYTHON_USEDEP}] )
 	openblas? ( sci-libs/openblas )
 	opencl? ( dev-libs/clhpp virtual/opencl )
-	opencv? ( media-libs/opencv )
+	opencv? ( media-libs/opencv[${PYTHON_USEDEP}] )
 	python? ( ${PYTHON_DEPS} )
 	redis? ( dev-db/redis )
 	rocm? (
