@@ -75,7 +75,7 @@ BDEPEND="
 "
 
 PATCHES=(
-	"${FILESDIR}/0001-Use-FHS-compliant-paths-from-GNUInstallDirs-module-1.4.0.patch"
+	"${FILESDIR}/Use-FHS-compliant-paths-from-GNUInstallDirs-module-1.5.0.patch"
 	"${FILESDIR}/0002-Don-t-build-libtorch-again-for-PyTorch-1.4.0.patch"
 	"${FILESDIR}/0003-Change-path-to-caffe2-build-dir-made-by-libtorch.patch"
 	"${FILESDIR}/0004-Don-t-fill-rpath-of-Caffe2-library-for-system-wide-i.patch"
@@ -186,16 +186,8 @@ src_install() {
 	cmake-utils_src_install
 
 	local multilib_failing_files=(
-		libtorch.so
-		libtbb.so
-		libcaffe2_observers.so
-		libc10.so
-		libc10d.a
 		libgloo.a
-		libshm.so
 		libsleef.a
-		libcaffe2_detectron_ops.so
-		libtorch_python.so
 	)
 
 	for file in ${multilib_failing_files[@]}; do
@@ -206,14 +198,7 @@ src_install() {
 	rm -rfv "${D}/var"
 	rm -rfv "${D}/usr/lib"
 
-	rm -fv "${D}/usr/include/*.{h,hpp}"
-	rm -rfv "${D}/usr/include/asmjit"
-	rm -rfv "${D}/usr/include/c10d"
-	rm -rfv "${D}/usr/include/fbgemm"
 	rm -rfv "${D}/usr/include/fp16"
-	rm -rfv "${D}/usr/include/gloo"
-	rm -rfv "${D}/usr/include/include"
-	rm -rfv "${D}/usr/include/var"
 
 	if use rocm; then
 		rm -rfv "${D}/usr/include/hip"
