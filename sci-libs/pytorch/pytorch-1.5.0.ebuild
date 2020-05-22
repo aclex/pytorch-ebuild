@@ -234,6 +234,7 @@ src_install() {
 		}
 
 		python_foreach_impl install_shm_manager
+		rm "${D}/usr/bin/torch_shm_manager" || die
 
 		remove_tests() {
 			find "${D}" -name "*test*" -exec rm -rfv {} \;
@@ -241,6 +242,16 @@ src_install() {
 
 		scanelf -r --fix "${BUILD_DIR}/caffe2/python"
 		CMAKE_BUILD_DIR=${BUILD_DIR} distutils-r1_src_install
+
+		fix_caffe_convert_utils() {
+			python_setup
+			python_get_scriptdir
+
+			ln -rnsvf "${D}/${PYTHON_SCRIPTDIR}/convert-caffe2-to-onnx" "${D}/usr/bin/" || die
+			ln -rnsvf "${D}/${PYTHON_SCRIPTDIR}/convert-onnx-to-caffe2" "${D}/usr/bin/" || die
+		}
+
+		fix_caffe_convert_utils
 
 		if use test; then
 			python_foreach_impl remove_tests
