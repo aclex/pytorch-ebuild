@@ -199,6 +199,7 @@ src_install() {
 	rm -rfv "${D}/usr/lib"
 
 	rm -rfv "${D}/usr/include/fp16"
+	rm -rfv "${D}/usr/include/fp16.h"
 
 	if use rocm; then
 		rm -rfv "${D}/usr/include/hip"

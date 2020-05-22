@@ -1,0 +1,29 @@
+From 2349ab083446a59598c5d5c1876967093ad660fa Mon Sep 17 00:00:00 2001
+From: Alexey Chernov <4ernov@gmail.com>
+Date: Sat, 23 May 2020 00:55:42 +0300
+Subject: [PATCH] Prevent installing `fp16` library
+
+It seems to be internal Caffe2 dependency, so there's no need
+to install it together with the package.
+
+Signed-off by: Alexey Chernov <4ernov@gmail.com>
+---
+ cmake/Dependencies.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cmake/Dependencies.cmake b/cmake/Dependencies.cmake
+index 2075e06c6c..4d2fefbfdc 100644
+--- a/cmake/Dependencies.cmake
++++ b/cmake/Dependencies.cmake
+@@ -720,7 +720,7 @@ if (NOT TARGET fp16)
+   set(FP16_BUILD_BENCHMARKS OFF CACHE BOOL "")
+   add_subdirectory(
+     "${FP16_SOURCE_DIR}"
+-    "${CONFU_DEPENDENCIES_BINARY_DIR}/FP16")
++    "${CONFU_DEPENDENCIES_BINARY_DIR}/FP16" EXCLUDE_FROM_ALL)
+ endif()
+ list(APPEND Caffe2_DEPENDENCY_LIBS fp16)
+ 
+-- 
+2.26.2
+
