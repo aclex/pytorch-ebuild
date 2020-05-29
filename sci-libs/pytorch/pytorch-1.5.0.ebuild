@@ -89,6 +89,7 @@ PATCHES=(
 	"${FILESDIR}/Use-system-wide-pybind11-properly.patch"
 	"${FILESDIR}/Include-mkl-Caffe2-targets-only-when-enabled.patch"
 	"${FILESDIR}/Use-platform-dependent-LIBDIR-in-TorchConfig.cmake.in.patch"
+	"${FILESDIR}/Fix-path-to-torch_global_deps-library-in-installatio.patch"
 )
 
 src_prepare() {
