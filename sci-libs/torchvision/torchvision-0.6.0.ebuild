@@ -34,7 +34,7 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 PATCHES=(
-	"${FILESDIR}/0001-Control-support-of-ffmpeg.patch"
+	"${FILESDIR}/0001-Control-support-of-ffmpeg-0.6.0.patch"
 )
 
 src_unpack() {
