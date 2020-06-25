@@ -192,24 +192,24 @@ src_install() {
 	)
 
 	for file in ${multilib_failing_files[@]}; do
-		mv -f "${D}/usr/lib/$file" "${D}/usr/lib64"
+		mv -f "${D}/usr/lib/$file" "${D}/usr/lib64" || die
 	done
 
-	rm -rfv "${D}/torch"
-	rm -rfv "${D}/var"
-	rm -rfv "${D}/usr/lib"
+	rm -rfv "${D}/torch" || die
+	rm -rfv "${D}/var" || die
+	rm -rfv "${D}/usr/lib" || die
 
-	rm -rfv "${D}/usr/include/fp16"
-	rm -rfv "${D}/usr/include/fp16.h"
+	rm -rfv "${D}/usr/include/fp16" || die
+	rm -rfv "${D}/usr/include/fp16.h" || die
 
 	if use rocm; then
-		rm -rfv "${D}/usr/include/hip"
+		rm -rfv "${D}/usr/include/hip" || die
 	fi
 
-	rm -fv "${D}/usr/lib64/libtbb.so"
-	rm -rfv "${D}/usr/lib64/cmake"
+	rm -fv "${D}/usr/lib64/libtbb.so" || die
+	rm -rfv "${D}/usr/lib64/cmake" || die
 
-	rm -rfv "${D}/usr/share/doc/mkldnn"
+	rm -rfv "${D}/usr/share/doc/mkldnn" || die
 
 	if use python; then
 		install_shm_manager() {
@@ -224,10 +224,10 @@ src_install() {
 		rm "${D}/usr/bin/torch_shm_manager" || die
 
 		remove_tests() {
-			find "${D}" -name "*test*" -exec rm -rfv {} \;
+			find "${D}" -name "*test*" -exec rm -rfv {} \; || die
 		}
 
-		scanelf -r --fix "${BUILD_DIR}/caffe2/python"
+		scanelf -r --fix "${BUILD_DIR}/caffe2/python" || die
 		CMAKE_BUILD_DIR=${BUILD_DIR} distutils-r1_src_install
 
 		fix_caffe_convert_utils() {
@@ -247,11 +247,11 @@ src_install() {
 		python_foreach_impl python_optimize
 	fi
 
-	find "${D}/usr/lib64" -name "*.a" -exec rm -fv {} \;
+	find "${D}/usr/lib64" -name "*.a" -exec rm -fv {} \; || die
 
 	if use test; then
-		rm -rfv "${D}/usr/test"
-		rm -fv "${D}/usr/bin/test_api"
-		rm -fv "${D}/usr/bin/test_jit"
+		rm -rfv "${D}/usr/test" || die
+		rm -fv "${D}/usr/bin/test_api" || die
+		rm -fv "${D}/usr/bin/test_jit" || die
 	fi
 }
