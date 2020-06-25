@@ -233,9 +233,13 @@ src_install() {
 		fix_caffe_convert_utils() {
 			python_setup
 			python_get_scriptdir
+			python_get_sitedir
 
 			ln -rnsvf "${D}/${PYTHON_SCRIPTDIR}/convert-caffe2-to-onnx" "${D}/usr/bin/" || die
 			ln -rnsvf "${D}/${PYTHON_SCRIPTDIR}/convert-onnx-to-caffe2" "${D}/usr/bin/" || die
+
+			# copy absent Protobuf-generated Python binding files
+			find "${BUILD_DIR}/caffe2/proto" -name "*_pb2.py" -exec cp -v {} "${D}/${PYTHON_SITEDIR}/caffe2/proto" \; || die
 		}
 
 		fix_caffe_convert_utils
