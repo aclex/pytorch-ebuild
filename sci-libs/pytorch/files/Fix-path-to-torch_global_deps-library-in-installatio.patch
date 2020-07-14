@@ -18,7 +18,7 @@ index ac3ffc684b..31a98f861d 100644
 -    lib_path = os.path.join(os.path.dirname(here), 'lib', lib_name)
 +    is_64bits = sys.maxsize > 2**32
 +    lib_dir = 'lib64' if is_64bits else 'lib'
-+    lib_path = os.path.join('usr', lib_dir, lib_name)
++    lib_path = os.path.join('/', 'usr', lib_dir, lib_name)
  
      ctypes.CDLL(lib_path, mode=ctypes.RTLD_GLOBAL)
  
