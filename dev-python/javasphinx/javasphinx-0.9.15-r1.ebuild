@@ -4,6 +4,7 @@
 EAPI=6
 PYTHON_COMPAT=( python3_{6,7} pypy{,3} )
 
+DISTUTILS_USE_SETUPTOOLS="rdepend"
 inherit distutils-r1
 
 DESCRIPTION="Sphinx extension for documenting Java projects"
@@ -28,8 +29,7 @@ PDEPEND="
 
 DEPEND="
 	${RDEPEND}
-	${PDEPEND}
-	dev-python/setuptools"
+	${PDEPEND}"
 
 PATCHES=(
 	"${FILESDIR}/Fix-l_-command-as-per-recent-Sphinx-changes.patch"
