@@ -202,6 +202,7 @@ src_install() {
 	rm -rfv "${D}/usr/include/fp16" || die
 	rm -rfv "${D}/usr/include/fp16.h" || die
 
+
 	if use rocm; then
 		rm -rfv "${D}/usr/include/hip" || die
 	fi
@@ -212,7 +213,11 @@ src_install() {
 	rm -rfv "${D}/usr/share/doc/mkldnn" || die
 	rm -rfv "${D}/usr/share/doc/dnnl" || die
 
-	rm -fv "${D}/usr/lib64/libuv.so{,.1,.1.0.0}" || die
+	rm -rfv "${D}/usr/include/uv" || die
+	rm -fv "${D}/usr/include/uv.h" || die
+	rm -fv "${D}/usr/lib64/libuv.so" || die
+	rm -fv "${D}/usr/lib64/libuv.so.1" || die
+	rm -fv "${D}/usr/lib64/libuv.so.1.0.0" || die
 	rm -rfv "${D}/usr/lib64/pkgconfig" || die
 
 	if use python; then
