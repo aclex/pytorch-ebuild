@@ -188,6 +188,7 @@ src_install() {
 	local multilib_failing_files=(
 		libgloo.a
 		libsleef.a
+		libtensorpipe.so
 	)
 
 	for file in ${multilib_failing_files[@]}; do
