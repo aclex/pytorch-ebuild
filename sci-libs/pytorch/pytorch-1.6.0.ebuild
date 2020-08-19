@@ -202,7 +202,6 @@ src_install() {
 	rm -rfv "${D}/usr/include/fp16" || die
 	rm -rfv "${D}/usr/include/fp16.h" || die
 
-
 	if use rocm; then
 		rm -rfv "${D}/usr/include/hip" || die
 	fi
