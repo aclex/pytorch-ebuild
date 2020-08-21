@@ -29,7 +29,7 @@ DEPEND="
 		sci-libs/scipy
 		>=dev-python/pillow-4.1.1[${PYTHON_USEDEP}]
 	)
-	=sci-libs/pytorch-1.5*[python?,cuda?]
+	=sci-libs/pytorch-1.6*[python?,cuda?]
 "
 RDEPEND="${DEPEND}"
 
