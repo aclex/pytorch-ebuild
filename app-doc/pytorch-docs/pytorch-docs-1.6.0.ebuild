@@ -24,9 +24,8 @@ DEPEND="
 	dev-python/numpy[${PYTHON_USEDEP}]
 	dev-python/matplotlib[${PYTHON_USEDEP}]
 	=sci-libs/pytorch-${PV}*[${PYTHON_USEDEP}]
-	=sci-libs/torchvision-0.6*[${PYTHON_USEDEP}]
+	=sci-libs/torchvision-0.7*[${PYTHON_USEDEP}]
 	dev-python/sphinxcontrib-katex[${PYTHON_USEDEP}]
-	dev-python/javasphinx[${PYTHON_USEDEP}]
 	dev-python/pytorch-sphinx-theme[${PYTHON_USEDEP}]
 "
 
