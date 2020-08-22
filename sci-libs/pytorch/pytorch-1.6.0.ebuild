@@ -7,7 +7,7 @@ PYTHON_COMPAT=( python3_{6,7,8} )
 
 DISTUTILS_OPTIONAL=1
 
-inherit distutils-r1 cmake-utils git-r3 python-r1 python-utils-r1
+inherit distutils-r1 cmake git-r3 python-r1 python-utils-r1
 
 DESCRIPTION="An open source machine learning framework"
 HOMEPAGE="https://pytorch.org/"
@@ -92,7 +92,7 @@ PATCHES=(
 )
 
 src_prepare() {
-	cmake-utils_src_prepare
+	cmake_src_prepare
 
 	if use rocm; then
 		${EPYTHON} "${S}/tools/amd_build/build_amd.py" || die
@@ -167,7 +167,7 @@ src_configure() {
 		-DBUILDING_SYSTEM_WIDE=ON # to remove insecure DT_RUNPATH header
 	)
 
-	cmake-utils_src_configure
+	cmake_src_configure
 
 	if use python; then
 		distutils-r1_src_configure
@@ -175,7 +175,7 @@ src_configure() {
 }
 
 src_compile() {
-	cmake-utils_src_compile
+	cmake_src_compile
 
 	if use python; then
 		CMAKE_BUILD_DIR=${BUILD_DIR} distutils-r1_src_compile
@@ -183,7 +183,7 @@ src_compile() {
 }
 
 src_install() {
-	cmake-utils_src_install
+	cmake_src_install
 
 	local multilib_failing_files=(
 		libgloo.a
