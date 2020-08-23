@@ -70,7 +70,11 @@ DEPEND="
 	)
 	zeromq? ( net-libs/zeromq )
 "
-RDEPEND="${DEPEND}"
+
+RDEPEND="${DEPEND}
+	sci-libs/onnx[python?]
+"
+
 BDEPEND="
 	doc? ( app-doc/doxygen )
 "
