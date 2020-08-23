@@ -5,4 +5,8 @@
         <email>4ernov@gmail.com</email>
         <name>Alexey Chernov</name>
     </maintainer>
+	<use>
+		<flag name="python">Build Python binary tools</flag>
+		<flag name="test">Enable tests</flag>
+	</use>
 </pkgmetadata>
