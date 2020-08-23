@@ -16,7 +16,7 @@ SRC_URI="https://github.com/${PN}/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+python"
+IUSE="+python test"
 
 DEPEND="
 	dev-libs/protobuf:0=
@@ -40,6 +40,10 @@ src_prepare() {
 }
 
 src_configure() {
+	local mycmakeargs=(
+		-DONNX_BUILD_TESTS=$(usex test ON OFF)
+	)
+
 	cmake_src_configure
 
 	use python && distutils-r1_src_configure
@@ -64,4 +68,15 @@ src_install() {
 		mv -f "${ED}/usr/lib/${file}" "${ED}/usr/$(get_libdir)"
 	done
 
+	fix_python_script_utils() {
+		python_setup
+		python_get_scriptdir
+		python_get_sitedir
+
+		ln -rnsvf "${D}/${PYTHON_SCRIPTDIR}/backend-test-tools" "${D}/usr/bin/" || die
+		ln -rnsvf "${D}/${PYTHON_SCRIPTDIR}/check-model" "${D}/usr/bin/" || die
+		ln -rnsvf "${D}/${PYTHON_SCRIPTDIR}/check-node" "${D}/usr/bin/" || die
+	}
+
+	use python && fix_python_script_utils
 }
