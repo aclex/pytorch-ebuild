@@ -1,0 +1,27 @@
+From f60fde6f30ab682520c6a839b6419fb0f931f0fa Mon Sep 17 00:00:00 2001
+From: Alexey Chernov <4ernov@gmail.com>
+Date: Sun, 15 Nov 2020 00:16:53 +0300
+Subject: [PATCH] Don't turn Sphinx warnings into errors
+
+As there're still many of them with all not too much concerned by
+the exact build.
+---
+ docs/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/docs/Makefile b/docs/Makefile
+index 28d910a..fa24230 100644
+--- a/docs/Makefile
++++ b/docs/Makefile
+@@ -2,7 +2,7 @@
+ #
+ 
+ # You can set these variables from the command line.
+-SPHINXOPTS    ?= -j auto -WT --keep-going
++SPHINXOPTS    ?= -j auto
+ SPHINXBUILD   ?= sphinx-build
+ SPHINXPROJ    ?= PyTorch
+ SOURCEDIR     ?= source
+-- 
+2.26.2
+
