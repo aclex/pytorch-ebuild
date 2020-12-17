@@ -22,6 +22,8 @@ IUSE="cuda ffmpeg +python"
 REQUIRED_USE="ffmpeg? ( python )"
 
 DEPEND="
+	virtual/jpeg
+	media-libs/libpng
 	cuda? ( dev-util/nvidia-cuda-toolkit:0= )
 	ffmpeg? ( virtual/ffmpeg )
 	python? (
