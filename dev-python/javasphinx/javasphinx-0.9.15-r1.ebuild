@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python3_{6,7} pypy{,3} )
+PYTHON_COMPAT=( python3_{6,7,8} pypy{,3} )
 
 DISTUTILS_USE_SETUPTOOLS="rdepend"
 inherit distutils-r1
