@@ -28,7 +28,7 @@ DEPEND="
 	ffmpeg? ( virtual/ffmpeg )
 	python? (
 		dev-python/setuptools[${PYTHON_USEDEP}]
-		dev-python/scipy-1.5.2[${PYTHON_USEDEP}]
+		dev-python/scipy[${PYTHON_USEDEP}]
 		>=dev-python/pillow-4.1.1[${PYTHON_USEDEP}]
 	)
 	=sci-libs/pytorch-1.7.1[python?,cuda?]
