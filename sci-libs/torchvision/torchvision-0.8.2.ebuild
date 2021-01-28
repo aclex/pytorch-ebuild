@@ -35,10 +35,6 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
-PATCHES=(
-	"${FILESDIR}/0.8/Control-support-of-ffmpeg.patch"
-)
-
 src_unpack() {
 	unpack ${A}
 	mv "${WORKDIR}/${P//torch/}" "${S}"
@@ -50,7 +46,7 @@ src_configure() {
 	if use python; then
 		FORCE_CUDA=$(usex cuda 1 0) \
 		CUDA_HOME=$(usex cuda ${CUDA_HOME} "") \
-		ENABLE_FFMPEG=$(usex ffmpeg 1 0) \
+		NO_FFMPEG=$(usex ffmpeg 0 1) \
 		distutils-r1_src_configure
 	fi
 }
@@ -61,7 +57,7 @@ src_compile() {
 	if use python; then
 		FORCE_CUDA=$(usex cuda 1 0) \
 		CUDA_HOME=$(usex cuda ${CUDA_HOME} "") \
-		ENABLE_FFMPEG=$(usex ffmpeg 1 0) \
+		NO_FFMPEG=$(usex ffmpeg 0 1) \
 		MAKEOPTS="-j1" \
 		distutils-r1_src_compile
 	fi
@@ -73,7 +69,7 @@ src_install() {
 	if use python; then
 		FORCE_CUDA=$(usex cuda 1 0) \
 		CUDA_HOME=$(usex cuda ${CUDA_HOME} "") \
-		ENABLE_FFMPEG=$(usex ffmpeg 1 0) \
+		NO_FFMPEG=$(usex ffmpeg 0 1) \
 		distutils-r1_src_install
 	fi
 }
