@@ -45,7 +45,7 @@ src_unpack() {
 }
 
 src_configure() {
-	cmake-utils_src_configure
+	cmake_src_configure
 
 	if use python; then
 		FORCE_CUDA=$(usex cuda 1 0) \
@@ -56,7 +56,7 @@ src_configure() {
 }
 
 src_compile() {
-	cmake-utils_src_compile
+	cmake_src_compile
 
 	if use python; then
 		FORCE_CUDA=$(usex cuda 1 0) \
@@ -68,7 +68,7 @@ src_compile() {
 }
 
 src_install() {
-	cmake-utils_src_install
+	cmake_src_install
 
 	if use python; then
 		FORCE_CUDA=$(usex cuda 1 0) \
