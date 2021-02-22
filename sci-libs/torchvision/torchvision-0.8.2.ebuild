@@ -55,6 +55,7 @@ src_compile() {
 	cmake_src_compile
 
 	if use python; then
+		addpredict /dev/nvidiactl
 		FORCE_CUDA=$(usex cuda 1 0) \
 		CUDA_HOME=$(usex cuda ${CUDA_HOME} "") \
 		NO_FFMPEG=$(usex ffmpeg 0 1) \
