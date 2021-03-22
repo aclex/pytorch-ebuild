@@ -1,0 +1,43 @@
+From 587b5420c0a99fc5b4486b41e8668ecea1340f9c Mon Sep 17 00:00:00 2001
+From: Alexey Chernov <4ernov@gmail.com>
+Date: Mon, 22 Mar 2021 23:56:55 +0300
+Subject: [PATCH 3/3] Use platform-dependent `LIBDIR` in `TorchConfig.cmake.in`
+
+---
+ cmake/TorchConfig.cmake.in | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/cmake/TorchConfig.cmake.in b/cmake/TorchConfig.cmake.in
+index 1d0b98d..6b7b3b3 100644
+--- a/cmake/TorchConfig.cmake.in
++++ b/cmake/TorchConfig.cmake.in
+@@ -15,7 +15,7 @@
+ #   torch
+ macro(append_torchlib_if_found)
+   foreach (_arg ${ARGN})
+-    find_library(${_arg}_LIBRARY ${_arg} PATHS "${TORCH_INSTALL_PREFIX}/lib")
++    find_library(${_arg}_LIBRARY ${_arg} PATHS "${TORCH_INSTALL_PREFIX}/@CMAKE_INSTALL_LIBDIR@")
+     if(${_arg}_LIBRARY)
+       list(APPEND TORCH_LIBRARIES ${${_arg}_LIBRARY})
+     else()
+@@ -26,7 +26,7 @@ endmacro()
+ 
+ macro(append_wholearchive_lib_if_found)
+   foreach (_arg ${ARGN})
+-    find_library(${_arg}_LIBRARY ${_arg} PATHS "${TORCH_INSTALL_PREFIX}/lib")
++    find_library(${_arg}_LIBRARY ${_arg} PATHS "${TORCH_INSTALL_PREFIX}/@CMAKE_INSTALL_LIBDIR@")
+     if(${_arg}_LIBRARY)
+       if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
+         list(APPEND TORCH_LIBRARIES "-Wl,-force_load,${${_arg}_LIBRARY}")
+@@ -163,7 +163,7 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+   set(TORCH_CXX_FLAGS "-D_GLIBCXX_USE_CXX11_ABI=@GLIBCXX_USE_CXX11_ABI@")
+ endif()
+ 
+-find_library(TORCH_LIBRARY torch PATHS "${TORCH_INSTALL_PREFIX}/lib")
++find_library(TORCH_LIBRARY torch PATHS "${TORCH_INSTALL_PREFIX}/@CMAKE_INSTALL_LIBDIR@")
+ # the statements below changes target properties on
+ # - the imported target from Caffe2Targets.cmake in shared library mode (see the find_package above)
+ #    - this is untested whether it is the correct (or desired) methodology in CMake
+-- 
+2.26.2
+
