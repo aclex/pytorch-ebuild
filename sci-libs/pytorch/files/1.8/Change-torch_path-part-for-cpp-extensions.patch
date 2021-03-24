@@ -18,7 +18,7 @@ index ca67303..f730f3e 100644
  
  _HERE = os.path.abspath(__file__)
 -_TORCH_PATH = os.path.dirname(os.path.dirname(_HERE))
-+_TORCH_PATH = os.path.dirname("/usr")
++_TORCH_PATH = "/usr"
  TORCH_LIB_PATH = os.path.join(_TORCH_PATH, 'lib')
  
  
