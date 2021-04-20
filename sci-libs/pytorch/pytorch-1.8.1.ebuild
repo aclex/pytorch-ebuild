@@ -46,7 +46,7 @@ DEPEND="
 	>=dev-python/pybind11-2.6.2[${PYTHON_USEDEP}]
 	dev-python/requests[${PYTHON_USEDEP}]
 	atlas? ( sci-libs/atlas )
-	cuda? ( dev-util/nvidia-cuda-toolkit:0= )
+	cuda? ( dev-util/nvidia-cuda-toolkit:0=[profiler] )
 	doc? ( dev-python/pytorch-sphinx-theme[${PYTHON_USEDEP}] )
 	ffmpeg? ( virtual/ffmpeg )
 	gflags? ( dev-cpp/gflags )
