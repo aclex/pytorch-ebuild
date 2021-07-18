@@ -1,0 +1,71 @@
+From 75d29a4889e283863940c05d491b734267b91a5b Mon Sep 17 00:00:00 2001
+From: Alexey Chernov <4ernov@gmail.com>
+Date: Fri, 16 Jul 2021 01:13:59 +0300
+Subject: [PATCH] Fix ROCm paths in `LoadHIP.cmake`
+
+---
+ cmake/public/LoadHIP.cmake | 38 +++++++++++++++++++-------------------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
+
+diff --git a/cmake/public/LoadHIP.cmake b/cmake/public/LoadHIP.cmake
+index 9cdde76..6a5045f 100644
+--- a/cmake/public/LoadHIP.cmake
++++ b/cmake/public/LoadHIP.cmake
+@@ -185,21 +185,21 @@ if(HIP_FOUND)
+   set(CMAKE_HCC_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
+   ### Remove setting of Flags when FindHIP.CMake PR #558 is accepted.###
+ 
+-  set(hip_DIR ${HIP_PATH}/lib/cmake/hip)
+-  set(hsa-runtime64_DIR ${ROCM_PATH}/lib/cmake/hsa-runtime64)
+-  set(AMDDeviceLibs_DIR ${ROCM_PATH}/lib/cmake/AMDDeviceLibs)
+-  set(amd_comgr_DIR ${ROCM_PATH}/lib/cmake/amd_comgr)
+-  set(rocrand_DIR ${ROCRAND_PATH}/lib/cmake/rocrand)
+-  set(hiprand_DIR ${HIPRAND_PATH}/lib/cmake/hiprand)
+-  set(rocblas_DIR ${ROCBLAS_PATH}/lib/cmake/rocblas)
+-  set(miopen_DIR ${MIOPEN_PATH}/lib/cmake/miopen)
+-  set(rocfft_DIR ${ROCFFT_PATH}/lib/cmake/rocfft)
+-  set(hipfft_DIR ${HIPFFT_PATH}/lib/cmake/hipfft)
+-  set(hipsparse_DIR ${HIPSPARSE_PATH}/lib/cmake/hipsparse)
+-  set(rccl_DIR ${RCCL_PATH}/lib/cmake/rccl)
+-  set(rocprim_DIR ${ROCPRIM_PATH}/lib/cmake/rocprim)
+-  set(hipcub_DIR ${HIPCUB_PATH}/lib/cmake/hipcub)
+-  set(rocthrust_DIR ${ROCTHRUST_PATH}/lib/cmake/rocthrust)
++  set(hip_DIR ${HIP_PATH}/lib64/cmake/hip)
++  set(hsa-runtime64_DIR ${ROCM_PATH}/lib64/cmake/hsa-runtime64)
++  set(AMDDeviceLibs_DIR ${ROCM_PATH}/lib64/cmake/AMDDeviceLibs)
++  set(amd_comgr_DIR ${ROCM_PATH}/lib64/cmake/amd_comgr)
++  set(rocrand_DIR ${ROCRAND_PATH}/lib64/cmake/rocrand)
++  set(hiprand_DIR ${HIPRAND_PATH}/lib64/cmake/hiprand)
++  set(rocblas_DIR ${ROCBLAS_PATH}/lib64/cmake/rocblas)
++  set(miopen_DIR ${MIOPEN_PATH}/lib64/cmake/miopen)
++  set(rocfft_DIR ${ROCFFT_PATH}/lib64/cmake/rocfft)
++  set(hipfft_DIR ${HIPFFT_PATH}/lib64/cmake/hipfft)
++  set(hipsparse_DIR ${HIPSPARSE_PATH}/lib64/cmake/hipsparse)
++  set(rccl_DIR ${RCCL_PATH}/lib64/cmake/rccl)
++  set(rocprim_DIR ${ROCPRIM_PATH}/lib64/cmake/rocprim)
++  set(hipcub_DIR ${HIPCUB_PATH}/lib64/cmake/hipcub)
++  set(rocthrust_DIR ${ROCTHRUST_PATH}/lib64/cmake/rocthrust)
+ 
+   find_package_and_print_version(hip REQUIRED)
+   find_package_and_print_version(hsa-runtime64 REQUIRED)
+@@ -233,13 +233,13 @@ if(HIP_FOUND)
+   find_library(PYTORCH_HIP_HCC_LIBRARIES ${hip_library_name} HINTS ${HIP_PATH}/lib)
+   # TODO: miopen_LIBRARIES should return fullpath to the library file,
+   # however currently it's just the lib name
+-  find_library(PYTORCH_MIOPEN_LIBRARIES ${miopen_LIBRARIES} HINTS ${MIOPEN_PATH}/lib)
++  find_library(PYTORCH_MIOPEN_LIBRARIES ${miopen_LIBRARIES} HINTS ${MIOPEN_PATH}/lib64)
+   # TODO: rccl_LIBRARIES should return fullpath to the library file,
+   # however currently it's just the lib name
+-  find_library(PYTORCH_RCCL_LIBRARIES ${rccl_LIBRARIES} HINTS ${RCCL_PATH}/lib)
++  find_library(PYTORCH_RCCL_LIBRARIES ${rccl_LIBRARIES} HINTS ${RCCL_PATH}/lib64)
+   # hiprtc is part of HIP
+   find_library(ROCM_HIPRTC_LIB ${hip_library_name} HINTS ${HIP_PATH}/lib)
+   # roctx is part of roctracer
+-  find_library(ROCM_ROCTX_LIB roctx64 HINTS ${ROCTRACER_PATH}/lib)
+-  set(roctracer_INCLUDE_DIRS ${ROCTRACER_PATH}/include)
++  find_library(ROCM_ROCTX_LIB roctx64 HINTS ${ROCTRACER_PATH}/lib64)
++  set(roctracer_INCLUDE_DIRS ${ROCTRACER_PATH}/include/roctracer)
+ endif()
+-- 
+2.31.1
+

@@ -1,0 +1,26 @@
+From 85c1c2f9a4865841bb9a5bcf38e6e5d4d48dc6bd Mon Sep 17 00:00:00 2001
+From: Alexey Chernov <4ernov@gmail.com>
+Date: Mon, 19 Jul 2021 01:21:05 +0300
+Subject: [PATCH] Don't check submodules sanity
+
+They are selectively pulled in ebuild so it's quite redundant
+and false negative here.
+---
+ setup.py | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index 06b96e0..c9333d4 100644
+--- a/setup.py
++++ b/setup.py
+@@ -350,7 +350,6 @@ def check_submodules():
+ def build_deps():
+     report('-- Building version ' + version)
+ 
+-    check_submodules()
+     check_pydep('yaml', 'pyyaml')
+ 
+     build_caffe2(version=version,
+-- 
+2.31.1
+
