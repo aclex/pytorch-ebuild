@@ -1,0 +1,27 @@
+From 19d72a5c85640cc444e0cdc932f150edb7e1eef5 Mon Sep 17 00:00:00 2001
+From: Alexey Chernov <4ernov@gmail.com>
+Date: Fri, 23 Jul 2021 00:18:39 +0300
+Subject: [PATCH] Wrap `add_stylesheet` function in `getattr`
+
+It was dropped as deprecated in newer Sphinx version, which leads
+to `AttributeError` even when directly mentioned as a fallback.
+---
+ docs/source/conf.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/docs/source/conf.py b/docs/source/conf.py
+index ae0c704..485fb22 100644
+--- a/docs/source/conf.py
++++ b/docs/source/conf.py
+@@ -254,7 +254,7 @@ def setup(app):
+ 
+     # In Sphinx 1.8 it was renamed to `add_css_file`, 1.7 and prior it is
+     # `add_stylesheet` (deprecated in 1.8).
+-    add_css = getattr(app, 'add_css_file', app.add_stylesheet)
++    add_css = getattr(app, 'add_css_file', getattr(app, 'add_stylesheet', None))
+     for css_file in html_css_files:
+         add_css(css_file)
+ 
+-- 
+2.31.1
+

@@ -33,6 +33,7 @@ PATCHES=(
 	"${FILESDIR}/0001-Don-t-prerender-TeX-parts.patch"
 	"${FILESDIR}/0002-Use-MAKE-environment-variable-instead-of-make.patch"
 	"${FILESDIR}/1.7/Don-t-turn-Sphinx-warnings-into-errors.patch"
+	"${FILESDIR}/1.9/Wrap-add_stylesheet-function-in-getattr.patch"
 )
 
 src_unpack() {
