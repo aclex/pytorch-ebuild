@@ -1,0 +1,26 @@
+From accf6c1826584c3f78e989eacdbec515fff654fc Mon Sep 17 00:00:00 2001
+From: Alexey Chernov <4ernov@gmail.com>
+Date: Wed, 8 Dec 2021 22:02:33 +0300
+Subject: [PATCH] Fix null dereference
+
+And compiler warning in GCC 11.
+---
+ torch/csrc/jit/frontend/ir_emitter.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/torch/csrc/jit/frontend/ir_emitter.cpp b/torch/csrc/jit/frontend/ir_emitter.cpp
+index 4c066c2..3ac0b46 100644
+--- a/torch/csrc/jit/frontend/ir_emitter.cpp
++++ b/torch/csrc/jit/frontend/ir_emitter.cpp
+@@ -1678,7 +1678,7 @@ struct to_ir {
+               << "Union type annotation `" << type_hint->repr_str()
+               << "` can hold " << vector_repr.str() << ", but none of "
+               << "those list types can hold the types of the given dict"
+-              << " elements, which were unified to " << candidate->repr_str();
++              << " elements, which were unified to null";
+         } else {
+           refined_type_hint = candidate;
+         }
+-- 
+2.32.0
+
