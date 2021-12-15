@@ -22,7 +22,7 @@ DEPEND="
 	dev-libs/protobuf:0=
 	python? (
 		dev-python/numpy[${PYTHON_USEDEP}]
-		dev-python/protobuf-python[${PYTHON_USEDEP}]
+		<dev-python/protobuf-python-3.18.0[${PYTHON_USEDEP}]
 		dev-python/pybind11[${PYTHON_USEDEP}]
 		dev-python/six[${PYTHON_USEDEP}]
 		dev-python/typing-extensions[${PYTHON_USEDEP}]
