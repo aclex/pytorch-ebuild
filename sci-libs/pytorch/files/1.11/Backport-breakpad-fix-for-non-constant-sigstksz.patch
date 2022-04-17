@@ -1,0 +1,12 @@
+diff -urB pytorch-1.11.0-original/third_party/breakpad/src/client/linux/handler/exception_handler.cc pytorch-1.11.0-git/third_party/breakpad/src/client/linux/handler/exception_handler.cc
+--- pytorch-1.11.0-original/third_party/breakpad/src/client/linux/handler/exception_handler.cc	2022-04-17 17:37:42.268849136 +0300
++++ pytorch-1.11.0-git/third_party/breakpad/src/client/linux/handler/exception_handler.cc	2022-04-17 17:34:48.608364364 +0300
+@@ -138,7 +138,7 @@
+   // SIGSTKSZ may be too small to prevent the signal handlers from overrunning
+   // the alternative stack. Ensure that the size of the alternative stack is
+   // large enough.
+-  static const unsigned kSigStackSize = std::max(16384, SIGSTKSZ);
++  const unsigned kSigStackSize = std::max<unsigned>(16384, SIGSTKSZ);
+ 
+   // Only set an alternative stack if there isn't already one, or if the current
+   // one is too small.
