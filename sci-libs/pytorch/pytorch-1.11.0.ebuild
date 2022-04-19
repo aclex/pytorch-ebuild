@@ -222,18 +222,18 @@ src_install() {
 	rm -rv "${D}/usr/lib64/pkgconfig" || die
 
 	if use python; then
+		install_shm_manager() {
+			python_get_sitedir
+			TORCH_BIN_DIR="${D}/${PYTHON_SITEDIR}/torch/bin"
+
+			mkdir -pv ${TORCH_BIN_DIR} || die
+			cp -v "${D}/usr/bin/torch_shm_manager" "${TORCH_BIN_DIR}" || die
+		}
+
+		python_foreach_impl install_shm_manager
+		rm "${D}/usr/bin/torch_shm_manager" || die
+
 		if use caffe2; then
-			install_shm_manager() {
-				python_get_sitedir
-				TORCH_BIN_DIR="${D}/${PYTHON_SITEDIR}/torch/bin"
-
-				mkdir -pv ${TORCH_BIN_DIR} || die
-				cp -v "${D}/usr/bin/torch_shm_manager" "${TORCH_BIN_DIR}" || die
-			}
-
-			python_foreach_impl install_shm_manager
-			rm "${D}/usr/bin/torch_shm_manager" || die
-
 			scanelf -r --fix "${BUILD_DIR}/caffe2/python" || die
 		fi
 
