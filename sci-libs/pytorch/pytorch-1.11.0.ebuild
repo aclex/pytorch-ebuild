@@ -55,7 +55,7 @@ DEPEND="
 	eigen? ( dev-cpp/eigen )
 	ffmpeg? ( virtual/ffmpeg )
 	gflags? ( dev-cpp/gflags )
-	glog? ( dev-cpp/glog )
+	glog? ( <dev-cpp/glog-0.5.0 )
 	leveldb? ( dev-libs/leveldb )
 	lmdb? ( dev-db/lmdb )
 	mkl? ( sci-libs/mkl )
