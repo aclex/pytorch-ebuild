@@ -217,7 +217,9 @@ src_install() {
 
 	rm -rv "${D}/usr/lib64/cmake" || die
 
-	rm -rv "${D}/usr/share/doc/dnnl" || die
+	if use mkldnn; then
+		rm -rv "${D}/usr/share/doc/dnnl" || die
+	fi
 
 	rm -rv "${D}/usr/lib64/pkgconfig" || die
 
