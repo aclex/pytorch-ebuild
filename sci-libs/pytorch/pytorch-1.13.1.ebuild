@@ -17,6 +17,7 @@ EGIT_REPO_URI="https://github.com/${PN}/${PN}"
 EGIT_COMMIT="v${PV}"
 EGIT_SUBMODULES=(
 	'*'
+	'-third_party/benchmark'
 	'-third_party/cpuinfo'
 	'-third_party/eigen'
 	'-third_party/FP16'
@@ -34,13 +35,13 @@ EGIT_SUBMODULES=(
 	'-third_party/python-peachpy'
 	'-third_party/python-six'
 	'-third_party/tbb'
-	'-third_party/xnnpack'
+	'-third_party/XNNPACK'
 )
 
 LICENSE="BSD"
 SLOT="0/${PV}"
 KEYWORDS="~amd64 ~x86"
-IUSE="asan atlas caffe2 cuda doc eigen +fbgemm ffmpeg gflags glog +gloo leveldb lmdb mkl +mkldnn mpi namedtensor +nnpack numa +numpy +observers openblas opencl opencv +openmp +python +qnnpack redis rocm static tbb test tools zeromq"
+IUSE="asan atlas caffe2 cuda doc eigen +fbgemm ffmpeg gflags glog +gloo leveldb lmdb mkl +mkldnn mpi namedtensor +nnpack numa +numpy +observers openblas opencl opencv +openmp +python qnnpack redis rocm static tbb test tools xnnpack zeromq"
 
 REQUIRED_USE="
 	python? ( ${PYTHON_REQUIRED_USE} )
@@ -55,7 +56,6 @@ REQUIRED_USE="
 DEPEND="
 	dev-libs/protobuf
 	dev-libs/pthreadpool
-	sci-libs/XNNPACK
 	dev-python/pyyaml[${PYTHON_USEDEP}]
 	>=dev-python/pybind11-2.6.2[${PYTHON_USEDEP}]
 	dev-python/requests[${PYTHON_USEDEP}]
@@ -85,7 +85,12 @@ DEPEND="
 		sci-libs/miopen
 		dev-libs/roct-thunk-interface
 	)
+	test? (
+		dev-cpp/gtest
+		dev-cpp/benchmark
+	)
 	tbb? ( dev-cpp/tbb )
+	xnnpack? ( sci-libs/XNNPACK )
 	zeromq? ( net-libs/zeromq )
 "
 
@@ -185,15 +190,17 @@ src_configure() {
 		-DUSE_ZMQ=$(usex zeromq ON OFF)
 		-DUSE_MPI=$(usex mpi ON OFF)
 		-DUSE_GLOO=$(usex gloo ON OFF)
-		-DUSE_SYSTEM_PYBIND11=ON
+		-DUSE_XNNPACK=$(usex xnnpack ON OFF)
 		-DBLAS=${blas}
 		-DBUILDING_SYSTEM_WIDE=ON # to remove insecure DT_RUNPATH header
+		-DUSE_SYSTEM_BENCHMARK=$(usex test ON OFF)
 		-DUSE_SYSTEM_EIGEN_INSTALL=ON
 		-DUSE_SYSTEM_FP16=ON
 		-DUSE_SYSTEM_GLOO=$(usex gloo ON OFF)
 		-DUSE_SYSTEM_ONNX=ON
 		-DUSE_SYSTEM_CPUINFO=ON
 		-DUSE_SYSTEM_PTHREADPOOL=ON
+		-DUSE_SYSTEM_PYBIND11=ON
 		-DUSE_SYSTEM_XNNPACK=ON
 	)
 
@@ -226,8 +233,9 @@ src_install() {
 
 	rm -rv "${D}/usr/lib" || die
 
-	rm -rv "${D}/usr/include/fp16" || die
-	rm -rv "${D}/usr/include/fp16.h" || die
+	rm -rv "${D}/usr/include/clog.h" || die
+	rm -rv "${D}/usr/include/fxdiv.h" || die
+	rm -rv "${D}/usr/include/psimd.h" || die
 
 	if use rocm; then
 		rm -rv "${D}/usr/include/hip" || die
