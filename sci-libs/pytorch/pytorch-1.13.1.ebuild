@@ -17,16 +17,24 @@ EGIT_REPO_URI="https://github.com/${PN}/${PN}"
 EGIT_COMMIT="v${PV}"
 EGIT_SUBMODULES=(
 	'*'
+	'-third_party/cpuinfo'
 	'-third_party/eigen'
+	'-third_party/FP16'
+	'-third_party/FXdiv'
 	'-third_party/protobuf'
 	'-third_party/ios-cmake'
 	'-third_party/gflags'
 	'-third_party/glog'
+	'-third_party/neon2sse'
 	'-third_party/onnx'
+	'-third_party/protobuf'
+	'-third_party/psimd'
+	'-third_party/pthreadpool'
 	'-third_party/pybind11'
+	'-third_party/python-peachpy'
 	'-third_party/python-six'
 	'-third_party/tbb'
-	'-third_party/neon2sse'
+	'-third_party/xnnpack'
 )
 
 LICENSE="BSD"
@@ -46,6 +54,8 @@ REQUIRED_USE="
 
 DEPEND="
 	dev-libs/protobuf
+	dev-libs/pthreadpool
+	sci-libs/XNNPACK
 	dev-python/pyyaml[${PYTHON_USEDEP}]
 	>=dev-python/pybind11-2.6.2[${PYTHON_USEDEP}]
 	dev-python/requests[${PYTHON_USEDEP}]
@@ -57,6 +67,7 @@ DEPEND="
 	ffmpeg? ( virtual/ffmpeg )
 	gflags? ( dev-cpp/gflags )
 	glog? ( >=dev-cpp/glog-0.6.0 )
+	gloo? ( sci-libs/gloo )
 	leveldb? ( dev-libs/leveldb )
 	lmdb? ( dev-db/lmdb )
 	mkl? ( sci-libs/mkl )
@@ -178,7 +189,12 @@ src_configure() {
 		-DBLAS=${blas}
 		-DBUILDING_SYSTEM_WIDE=ON # to remove insecure DT_RUNPATH header
 		-DUSE_SYSTEM_EIGEN_INSTALL=ON
+		-DUSE_SYSTEM_FP16=ON
+		-DUSE_SYSTEM_GLOO=$(usex gloo ON OFF)
 		-DUSE_SYSTEM_ONNX=ON
+		-DUSE_SYSTEM_CPUINFO=ON
+		-DUSE_SYSTEM_PTHREADPOOL=ON
+		-DUSE_SYSTEM_XNNPACK=ON
 	)
 
 	cmake_src_configure
