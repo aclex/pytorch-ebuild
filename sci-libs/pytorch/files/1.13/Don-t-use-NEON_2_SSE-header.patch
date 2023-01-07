@@ -1,0 +1,27 @@
+From 7679454cb076c6eeb314c1bf0d523700161398b8 Mon Sep 17 00:00:00 2001
+From: Alexey Chernov <4ernov@gmail.com>
+Date: Sat, 7 Jan 2023 04:54:31 +0300
+Subject: [PATCH] Don't use NEON_2_SSE header
+
+Due to its unclear custom license it can't be easily wrapped with
+ebuild or whatever.
+---
+ caffe2/operators/quantized/int8_simd.h | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/caffe2/operators/quantized/int8_simd.h b/caffe2/operators/quantized/int8_simd.h
+index ded445e..1b0a885 100644
+--- a/caffe2/operators/quantized/int8_simd.h
++++ b/caffe2/operators/quantized/int8_simd.h
+@@ -16,8 +16,3 @@
+ #ifdef GEMMLOWP_NEON
+ #define INT8_NEON_SIMD
+ #endif
+-
+-#if defined(__SSE4_2__) && defined(__clang__)
+-#include "NEON_2_SSE.h"
+-#define INT8_NEON_SIMD
+-#endif
+-- 
+2.38.2
+
