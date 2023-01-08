@@ -41,7 +41,7 @@ EGIT_SUBMODULES=(
 LICENSE="BSD"
 SLOT="0/${PV}"
 KEYWORDS="~amd64 ~x86"
-IUSE="asan atlas caffe2 cuda doc eigen +fbgemm ffmpeg gflags glog +gloo leveldb lmdb mkl +mkldnn mpi namedtensor +nnpack numa +numpy +observers openblas opencl opencv +openmp +python qnnpack redis rocm static tbb test tools xnnpack zeromq"
+IUSE="asan atlas caffe2 cuda eigen +fbgemm ffmpeg gflags glog +gloo leveldb lmdb mkl +mkldnn mpi namedtensor +nnpack numa +numpy +observers openblas opencl opencv +openmp +python qnnpack redis rocm static tbb test tools xnnpack zeromq"
 
 REQUIRED_USE="
 	python? ( ${PYTHON_REQUIRED_USE} )
@@ -64,7 +64,7 @@ DEPEND="
 	cuda? ( dev-util/nvidia-cuda-toolkit:0=[profiler] )
 	doc? ( dev-python/pytorch-sphinx-theme[${PYTHON_USEDEP}] )
 	eigen? ( dev-cpp/eigen )
-	ffmpeg? ( virtual/ffmpeg )
+	ffmpeg? ( media-video/ffmpeg )
 	gflags? ( dev-cpp/gflags )
 	glog? ( >=dev-cpp/glog-0.6.0 )
 	gloo? ( sci-libs/gloo )
