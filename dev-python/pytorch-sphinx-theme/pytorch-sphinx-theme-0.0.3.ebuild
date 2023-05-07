@@ -3,13 +3,13 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6,7,8,9} )
+PYTHON_COMPAT=( python3_{7,8,9,10,11} )
 
 inherit distutils-r1
 
 DESCRIPTION="Sphinx theme for PyTorch Docs and PyTorch Tutorials"
 HOMEPAGE="https://github.com/pytorch/pytorch_sphinx_theme"
-COMMIT="77e5f4c6a11538b996aac8aa989ee8ad45d66919"
+COMMIT="05b9b63ad4d384ce14bde1d9e08fc9c33142b9d9"
 SRC_URI="https://github.com/pytorch/pytorch_sphinx_theme/archive/${COMMIT}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="MIT"

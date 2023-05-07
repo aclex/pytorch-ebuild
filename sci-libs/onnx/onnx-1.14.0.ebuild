@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6,7,8,9} )
+PYTHON_COMPAT=( python3_{7..11} )
 
 DISTUTILS_OPTIONAL=1
 
@@ -21,15 +21,16 @@ IUSE="+python test"
 DEPEND="
 	dev-libs/protobuf:0=
 	python? (
-		dev-python/numpy[${PYTHON_USEDEP}]
-		<dev-python/protobuf-python-3.18.0[${PYTHON_USEDEP}]
-		dev-python/pybind11[${PYTHON_USEDEP}]
+		>=dev-python/numpy-1.16.6[${PYTHON_USEDEP}]
+		>=dev-python/protobuf-python-3.20.2[${PYTHON_USEDEP}]
+		>=dev-python/pybind11-2.6.0[${PYTHON_USEDEP}]
 		dev-python/six[${PYTHON_USEDEP}]
-		dev-python/typing-extensions[${PYTHON_USEDEP}]
+		>=dev-python/typing-extensions-3.6.2.1[${PYTHON_USEDEP}]
 	)"
 RDEPEND="${DEPEND}"
 
-PATCHES=( "${FILESDIR}/${PN}-use-system-wide-pybind11.patch" )
+PATCHES=(
+)
 
 src_prepare() {
 	if use python; then
@@ -41,7 +42,9 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
+		-DONNX_USE_PROTOBUF_SHARED_LIBS=ON
 		-DONNX_BUILD_TESTS=$(usex test ON OFF)
+		-DBUILD_ONNX_PYTHON=$(usex python ON OFF)
 	)
 
 	cmake_src_configure
