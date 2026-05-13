@@ -1,3 +1,9 @@
+**Archived**
+=========
+This repository is now quite outdated and getting archived in favour of the corresponding packages in [`sci-ml`](https://packages.gentoo.org/categories/sci-ml) namespace of the mainline Gentoo repository which look properly separated in terms of avoiding redundant building, are being updated very actively and seem to support all the important features like ROCm and CUDA. The only missing thing I haven't managed to find is offline documentation package, but given some issues it used to have and online version always available this apparently is not a significant loss.
+
+**Many thanks to everyone who used, commented and fixed the ebuilds here!**
+
 Ebuild files and necessary patches for [PyTorch](https://github.com/pytorch/pytorch)
 ==========
 
